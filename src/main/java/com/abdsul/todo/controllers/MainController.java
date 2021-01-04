@@ -3,6 +3,7 @@ package com.abdsul.todo.controllers;
 import com.abdsul.todo.model.Category;
 import com.abdsul.todo.model.Priority;
 import com.abdsul.todo.model.Task;
+import com.abdsul.todo.model.User;
 import com.abdsul.todo.services.CategoryService;
 import com.abdsul.todo.services.PriorityService;
 import com.abdsul.todo.services.TaskService;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin("*")
+@CrossOrigin()
 @RestController
 @RequestMapping("/todo-list")
 public class MainController {
@@ -70,6 +71,11 @@ public class MainController {
     public ResponseEntity<List<Priority>> getPriorities(){
         List<Priority> priorities = priorityService.findAll();
         return new ResponseEntity<>(priorities, HttpStatus.OK);
+    }
+
+    @GetMapping("/validateLogin" )
+    public ResponseEntity<User> validateLogin() {
+        return new ResponseEntity<>(new User("User successfully authenticated"), HttpStatus.OK) ;
     }
 
 
